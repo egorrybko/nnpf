@@ -20,4 +20,8 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 COPY . /usr/src/app/
 
 # run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+RUN chmod +x /usr/src/app/entrypoint.sh
+ENTRYPOINT ["sh", "entrypoint.sh"]
+
+#docker build . -t main
+#docker-compose up -d --build
