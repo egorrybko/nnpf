@@ -1,0 +1,174 @@
+<!-- templates/thumbnailer/home.html -->
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="{% static 'img/logo.ico' %}" type="image/x-icon">
+  <title>NNPF</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="{% static 'js/axios.js' %}"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/main">
+      <img src="{% static 'img/logo.png' %}" style="max-height: 3.5rem;">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/main">
+        Главная
+      </a>
+	  
+	  <a class="navbar-item" href="/">
+        Нейронная сеть
+      </a>
+
+      <a class="navbar-item" href="/about_prj">
+        О проекте
+      </a>
+
+      <a class="navbar-item" href="/about_us">
+         О нас
+      </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <section class="hero is-link is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-size-1 has-text-centered">Выберите изображение</h1>
+        <p class="subtitle has-text-centered" id="progress-title"></p>
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="file is-large has-name">
+                <label class="file-label">
+                  {{ form.image_file|add_class:"file-input" }}
+                  <span class="file-cta">
+                    <span class="file-icon"><i class="fas fa-upload"></i></span>
+                    <span class="file-label">Выбрать...</span>
+                  </span>
+                  <span id="file-name" class="file-name"
+                    style="background-color: white; color: black; min-width: 450px;">
+                  </span>
+                </label>
+                <input class="button is-link is-large" type="submit" value="Обработать">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+  var file = document.getElementById('{{form.image_file.id_for_label}}');
+  if(file != null){
+      file.onchange = function() {
+        if(file.files.length > 0) {
+          document.getElementById('file-name').innerHTML = file.files[0].name;
+        }
+    }
+  };
+  </script>
+  {% if task_id %}
+  <script>
+  var taskUrl = "{% url 'task' task_id=task_id %}";
+  var dots = 1;
+  var progressTitle = document.getElementById('progress-title');
+  updateProgressTitle();
+  var timer = setInterval(function() {
+    updateProgressTitle();
+    axios.get(taskUrl)
+      .then(function(response){
+        var taskStatus = response.data.task_status
+        if (taskStatus === 'SUCCESS') {
+          clearTimer('Посмотрите результат в загрузках и нажмите "Обработать" ещё раз');
+          var url = window.location.protocol + '//' + window.location.host + response.data.results.archive_path;
+          var a = document.createElement("a");
+          a.target = '_BLANK';
+          document.body.appendChild(a);
+          a.style = "display: none";
+          a.href = url;
+          a.download = 'results.zip';
+          a.click();
+          document.body.removeChild(a);
+        } else if (taskStatus === 'FAILURE') {
+          clearTimer('Произошла ошибка. Проверьте выбранный формат файла и перезагрузите страницу.');
+        }
+      })
+      .catch(function(err){
+        console.log('err', err);
+        clearTimer('Произошла ошибка. Проверьте выбранный формат файла и перезагрузите страницу.');
+      });
+  }, 800);
+  function updateProgressTitle() {
+    dots++;
+    if (dots > 3) {
+      dots = 1;
+    }
+    progressTitle.innerHTML = 'Изображение обрабатывается ';
+    for (var i = 0; i < dots; i++) {
+      progressTitle.innerHTML += '.';
+    }
+  }
+  function clearTimer(message) {
+    clearInterval(timer);
+    progressTitle.innerHTML = message;
+  }
+  </script>
+  {% endif %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+
+});
+$(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+
+  });
+});
+</script>
+</body>
+</html>

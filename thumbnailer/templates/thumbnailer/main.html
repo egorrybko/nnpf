@@ -1,0 +1,144 @@
+<!-- templates/thumbnailer/main.html -->
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="{% static 'img/logo.ico' %}" type="image/x-icon">
+  <title>NNPF</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="{% static 'js/axios.js' %}"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/main">
+      <img src="{% static 'img/logo.png' %}" style="max-height: 3.5rem;">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/main">
+        Главная
+      </a>
+	  
+	  <a class="navbar-item" href="/">
+        Нейронная сеть
+      </a>
+
+      <a class="navbar-item" href="/about_prj">
+        О проекте
+      </a>
+
+      <a class="navbar-item" href="/about_us">
+         О нас
+      </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="hero is-link is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+	  
+		  <!-- Section Start -->
+		<div>
+			<h1 class="title is-1">NNPF</h1>
+			<p>
+				<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill" /></svg>
+				Не является медецинским программным обеспечением. Создана с целью изучения классификации изображений при помощи нейронной сети.
+			</p>
+			<p>NNPF - Neural Net Pneumonia Filtered. Нейронная сеть для диагностирования пневмонии.</p>
+			<p>Привет! Меня зовут Егор, я разработчик этого приложения. Ещё раз предупрежу. НЕ нужно расценивать результаты работы нейронной сети, как диагностику пнемонии. Если у вас есть признаки данного заболевания, обязательно обратитесь к врачу!</p>
+			<p>Давайте начём.</p>
+			<h2 class="title is-2">Что такое пневмония?</h2>
+			<p>Пневмония – это острое инфекционное заболевание преимущественно бактериального происхождения, которое характеризуется поражением легочной ткани и приводит к нарушению функции дыхания.</p>
+			<img src="{% static 'img/about_photo.jpg' %}" alt="Image">
+			<p>Нормальная рентгенограмма грудной клетки (левая панель) показывает чистые легкие без каких-либо областей аномального затемнения на изображении. Бактериальная пневмония (в центре) обычно характеризуется фокальной долевой консолидацией, в данном случае в правой верхней доле (белые стрелки), тогда как вирусная пневмония (справа) проявляется более диффузным «интерстициальным» рисунком в обоих легких.</p>
+			<h2 class="title is-2">Как это работает?</h2>
+			<h5 class="title is-5">Здоровые легкие</h5>
+			<img src="{% static 'img/xray_n.png' %}" alt="Image">
+			<h5 class="title is-5">Легкие пораженные пневмонией</h5>
+			<img src="{% static 'img/xray_p.png' %}" alt="Image">
+			<p>Человеческому глазу трудно отличить пневмонию от здоровых легких, только если вы не являетесь врачом с многолетним опытом.</p>
+			<h5 class="title is-5">Пример работы алгоритма</h5>
+			<img src="{% static 'img/predict.png' %}" alt="Image" style="height: 500px;">
+			<p>На фото изображены легкие здорового человека. Результаты алгоритма близки к действительности.</p>
+
+			<h2 class="title is-2">Где это применять?</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies turpis non dictum consectetur. Suspendisse potenti. Mauris non felis dui. Phasellus ultrices diam a mollis tincidunt. Sed vulputate leo at magna semper blandit. Sed ultricies aliquam neque, bibendum finibus ante finibus aliquam. Pellentesque et justo quis urna volutpat dignissim. Suspendisse ut neque odio ante ipsum primis in faucibus orci luctus.</p>
+		</div>
+
+		<!-- Section Start -->
+		<div class="container py-5">
+			<h1 class="fw-bold display-4">Section Item 2</h1>
+			<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+				<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+					<path
+						d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+				</symbol>
+				<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+					<path
+						d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+				</symbol>
+				<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+					<path
+						d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+				</symbol>
+			</svg>
+		</div>
+
+	  
+ 
+      </div>
+    </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+
+});
+$(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+
+  });
+});
+</script>
+</body>
+</html>
