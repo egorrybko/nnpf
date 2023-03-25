@@ -19,7 +19,7 @@ services:
 
   celery:
     build: ./
-    command: celery -A image_pnev worker --loglevel=info --pool=sola
+    command: celery -A image_pnev worker --loglevel=info --pool=solo
     volumes:
       - ./:/usr/src/app
     environment:
