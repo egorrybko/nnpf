@@ -11,6 +11,10 @@ ENV PYTHONUNBUFFERED 1
 # install dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/app/requirements.txt
+
+RUN apt-get update && apt-get install -y python3-opencv
+RUN pip install opencv-python
+
 RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
@@ -21,6 +25,12 @@ COPY . /usr/src/app/
 
 # run entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
+
+EXPOSE 6379
+EXPOSE 8000
+EXPOSE 80
+EXPOSE 1337
+
 ENTRYPOINT ["sh", "entrypoint.sh"]
 
 #docker build . -t main
