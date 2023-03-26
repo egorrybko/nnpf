@@ -1,5 +1,5 @@
 #Указываев базовый образ https://hub.docker.com/_/python
-FROM python:latest
+FROM python:3.10.3
 
 # set work directory
 WORKDIR /usr/src/app
@@ -25,3 +25,4 @@ ENTRYPOINT ["sh", "entrypoint.sh"]
 
 #docker build . -t main
 #docker-compose up -d --build
+#h5py==3.7.0
