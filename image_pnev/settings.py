@@ -73,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'image_pnev.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -84,6 +83,7 @@ DATABASES = {
     }
 }
 
+CSRF_TRUSTED_ORIGINS = ['https://egorrybko-urban-engine-q5w57pp6jxpf4x5w-1337.preview.app.github.dev','https://127.0.0.1']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
