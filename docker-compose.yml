@@ -3,7 +3,7 @@ version: '3.7'
 services:
   web:
     build: ./
-    command: python manage.py runserver 127.0.0.1:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/
     ports:
@@ -19,7 +19,7 @@ services:
 
   celery:
     build: ./
-    command: celery worker --app=core --loglevel=info 
+    command: celery -A worker --app=core --loglevel=DEBUG
     volumes:
       - ./:/usr/src/app
     environment:
@@ -34,5 +34,7 @@ services:
 
   redis:
     image: redis:5-alpine
+    expose:
+            - 6379
     ports:
       - "6379:6379"

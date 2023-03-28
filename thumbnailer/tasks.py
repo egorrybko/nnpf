@@ -32,6 +32,7 @@ from celery import shared_task
 from PIL import Image
 from django.conf import settings
 from pathlib import Path
+
 @shared_task
 def make_thumbnails(file_path, thumbnails=[]):
     path, file = os.path.split(file_path)
