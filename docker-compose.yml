@@ -19,7 +19,7 @@ services:
 
   celery:
     build: ./
-    command: celery -A worker --app=core --loglevel=DEBUG
+    command: celery worker --app=image_pnev --loglevel=info
     volumes:
       - ./:/usr/src/app
     environment:
