@@ -32,9 +32,11 @@ from celery import shared_task
 from PIL import Image
 from django.conf import settings
 from pathlib import Path
+#from celery.utils.log import get_task_logger
 
 @shared_task
 def make_thumbnails(file_path, thumbnails=[]):
+    #logger.info("make_thumbnails run", file_path)
     path, file = os.path.split(file_path)
     file_name, ext = os.path.splitext(file)
     zip_file = f"{file_name}.zip"

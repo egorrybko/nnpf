@@ -83,7 +83,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://egorrybko-urban-engine-q5w57pp6jxpf4x5w-1337.preview.app.github.dev','https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://egorrybko-redesigned-capybara-xgjg5vvxg69hv66q-8000.preview.app.github.dev','https://127.0.0.1']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -130,8 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #CELERY_BROKER_URL = 'redis://redis:6379/0'
 #CELERY_RESULT_BACKEND = "redis"
 #CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+#CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379")
+#CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379")
+CELERY_BROKER_URL = 'redis://redis:6379'
+#CELERY_RESULT_BACKEND = "redis"
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
 #redis://localhost:6379
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'

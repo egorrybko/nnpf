@@ -7,33 +7,35 @@ services:
     volumes:
       - ./:/usr/src/app/
     ports:
-      - 1337:8000
+      - 8000:8000
     environment:
       - DEBUG=1
       - SECRET_KEY=django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-      - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
+      - CELERY_BROKER=redis://redis:6379
+      - CELERY_BACKEND=redis://redis:6379
+    links:
+      - redis
     depends_on:
       - redis
 
   celery:
     build: ./
-    command: celery worker --app=image_pnev --loglevel=info
+    command: celery -A image_pnev worker -l DEBUG
     volumes:
       - ./:/usr/src/app
     environment:
       - DEBUG=1
       - SECRET_KEY=django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-      - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
+      - CELERY_BROKER=redis://redis:6379
+      - CELERY_BACKEND=redis://redis:6379
     depends_on:
       - web
       - redis
 
   redis:
-    image: redis:5-alpine
+    image: redis:6.0.8
     expose:
             - 6379
     ports:
