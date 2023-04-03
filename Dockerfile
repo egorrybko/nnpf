@@ -28,14 +28,15 @@ RUN pip install opencv-python
 RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
-COPY ./entrypoint.sh /usr/src/image_pnev/entrypoint.sh
+COPY ./entrypoint_back.sh /usr/src/image_pnev/
+COPY ./entrypoint_front.sh /usr/src/image_pnev/entrypoint_front.sh
 
 # copy project
 COPY . /usr/src/image_pnev/
 
 # run entrypoint.sh
-RUN chmod +x /usr/src/image_pnev/entrypoint_back.sh
-RUN chmod +x /usr/src/image_pnev/entrypoint_front.sh
+RUN chmod 0700 /usr/src/image_pnev/entrypoint_back.sh
+RUN chmod 0700 /usr/src/image_pnev/entrypoint_front.sh
 
 
 EXPOSE 6379
