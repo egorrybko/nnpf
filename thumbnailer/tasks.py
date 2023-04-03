@@ -53,8 +53,8 @@ def make_thumbnails(file_path, thumbnails=[]):
 
         #history = pickle.load(open('trainHistoryDict', "rb"))
         ROOT_DIR = Path(os.path.dirname(os.path.abspath(__file__))).resolve().parents[1].__str__()
-        model = keras.models.load_model(ROOT_DIR+'\image_pnev\model_01')
-        model.load_weights(ROOT_DIR+'\image_pnev\model_weights_01')
+        model = keras.models.load_model(ROOT_DIR+'app/model_01')
+        model.load_weights(ROOT_DIR+'app/model_weights_01')
 
         predictions = model.predict(x3)
         predictions = predictions.reshape(1, -1)[0]

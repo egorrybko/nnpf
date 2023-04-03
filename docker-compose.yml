@@ -12,8 +12,8 @@ services:
       - DEBUG=1
       - SECRET_KEY=django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-      - CELERY_BROKER=redis://redis:6379
-      - CELERY_BACKEND=redis://redis:6379
+#      - CELERY_BROKER=redis://redis:6379
+#      - CELERY_BACKEND=redis://redis:6379
     links:
       - redis
     depends_on:
@@ -28,15 +28,10 @@ services:
       - DEBUG=1
       - SECRET_KEY=django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-      - CELERY_BROKER=redis://redis:6379
-      - CELERY_BACKEND=redis://redis:6379
+#      - CELERY_BROKER=redis://redis:6379
+#      - CELERY_BACKEND=redis://redis:6379
     depends_on:
-      - web
       - redis
 
   redis:
     image: redis:6.0.8
-    expose:
-            - 6379
-    ports:
-      - "6379:6379"
