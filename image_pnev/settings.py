@@ -83,7 +83,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://egorrybko-redesigned-capybara-xgjg5vvxg69hv66q-8000.preview.app.github.dev','https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://egorrybko-stunning-space-enigma-9gpg7jjwgqv2xrxp-8000.preview.app.github.dev','https://127.0.0.1']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

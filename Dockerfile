@@ -34,14 +34,15 @@ COPY ./entrypoint.sh /usr/src/image_pnev/entrypoint.sh
 COPY . /usr/src/image_pnev/
 
 # run entrypoint.sh
-RUN chmod +x /usr/src/image_pnev/entrypoint.sh
+RUN chmod +x /usr/src/image_pnev/entrypoint_back.sh
+RUN chmod +x /usr/src/image_pnev/entrypoint_front.sh
+
 
 EXPOSE 6379
 EXPOSE 8000
 EXPOSE 80
 EXPOSE 1337
 
-ENTRYPOINT ["sh", "entrypoint.sh"]
 
 #docker build . -t main
 #docker-compose up -d --build

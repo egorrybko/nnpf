@@ -3,9 +3,9 @@ version: '3.7'
 services:
   web:
     build: ./
-    command: python manage.py runserver 0.0.0.0:8000
+    entrypoint: /usr/src/image_pnev/entrypoint_front.sh
     volumes:
-      - ./:/usr/src/app/
+      - ./:/usr/src/image_pnev
     ports:
       - 8000:8000
     environment:
@@ -21,9 +21,9 @@ services:
 
   celery:
     build: ./
-    command: celery -A image_pnev worker -l DEBUG
+    entrypoint: /usr/src/image_pnev/entrypoint_back.sh
     volumes:
-      - ./:/usr/src/app
+      - ./:/usr/src/image_pnev
     environment:
       - DEBUG=1
       - SECRET_KEY=django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x
