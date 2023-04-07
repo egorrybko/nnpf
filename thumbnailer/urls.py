@@ -1,5 +1,6 @@
 # thumbnailer/urls.py
 from django.urls import path
+from django.urls import include, re_path
 from . import views
 urlpatterns = [
   path('', views.HomeView.as_view(), name='home'),
@@ -7,4 +8,5 @@ urlpatterns = [
   path('about_prj', views.about_prj, name='about_prj'),
   path('about_us', views.about_us, name='about_us'),
   path('task/<str:task_id>/', views.TaskView.as_view(), name='task'),
+  re_path(r"^account/", include("account.urls")),
 ]

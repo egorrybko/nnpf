@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django.contrib.sites',
     'account',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -117,8 +118,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-ACCOUNT_LANGUAGES = ("en", "English"), ("ru", "Русский")
-ACCOUNT_TIMEZONES = ("Europe/Moscow", 'Москва +3'), ('UTC', 'UTC')
+ACCOUNT_LANGUAGES = [["en", "English"], ["ru", "Русский"]]
+ACCOUNT_TIMEZONES = [["Europe/Moscow", 'Москва +3'], ['UTC', 'UTC']]
 SITE_ID = 2
 
 ACCOUNT_LOGIN_URL = 'yourapp:account_login'
@@ -127,7 +128,8 @@ ACCOUNT_PASSWORD_RESET_REDIRECT_URL = ACCOUNT_LOGIN_URL
 ACCOUNT_EMAIL_CONFIRMATION_URL = "yourapp:account_confirm_email"
 ACCOUNT_SETTINGS_REDIRECT_URL = 'yourapp:account_settings'
 ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "yourapp:account_password"
-
+ACCOUNT_OPEN_SIGNUP = True
+ACCOUNT_PASSWORD_STRIP = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
