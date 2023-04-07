@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'thumbnailer.apps.ThumbnailerConfig',
     'widget_tweaks',
+    'django.contrib.sites',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'image_pnev.urls'
@@ -66,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'account.context_processors.account',
             ],
         },
     },
@@ -114,6 +119,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+ACCOUNT_LANGUAGES = ("en", "English"), ("ru", "Русский")
+ACCOUNT_TIMEZONES = ("Europe/Moscow", 'Москва +3'), ('UTC', 'UTC')
+SITE_ID = 2
 
 
 # Static files (CSS, JavaScript, Images)
