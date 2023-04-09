@@ -1,0 +1,36 @@
+{% load widget_tweaks %}
+{% load static %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/main">
+      <img src="{% static 'img/logo.png' %}" style="max-height: 3.5rem;">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/main">
+        Главная
+      </a>
+	  
+	  <a class="navbar-item" href="/">
+        Нейронная сеть
+      </a>
+
+      <a class="navbar-item" href="/about_prj">
+        О проекте
+      </a>
+
+      <a class="navbar-item" href="/about_us">
+         О нас
+      </a>
+      </div>
+    </div>
+  </div>
+</nav>

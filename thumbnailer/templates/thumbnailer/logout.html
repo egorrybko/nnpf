@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<p>Вышел из системы!</p>
+
+<a href="{% url 'login'%}" >Нажмите здесь, чтобы снова войти в систему.</a>
+{% endblock %}

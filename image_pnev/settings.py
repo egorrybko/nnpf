@@ -23,8 +23,10 @@ SECRET_KEY = 'django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
+
+ACCOUNT_CREATE_ON_SAVE = True
+LOGIN_REDIRECT_URL = '/'
 
 
 # Application definition
@@ -40,7 +42,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django.contrib.sites',
     'account',
-    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'image_pnev.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'thumbnailer/templates/thumbnailer'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,7 +87,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://egorrybko-stunning-space-enigma-9gpg7jjwgqv2xrxp-8000.preview.app.github.dev','https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://egorrybko-literate-goggles-p5x5jpp9vjjfrwwg-8000.preview.app.github.dev','https://127.0.0.1']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -122,14 +123,15 @@ ACCOUNT_LANGUAGES = [["en", "English"], ["ru", "Русский"]]
 ACCOUNT_TIMEZONES = [["Europe/Moscow", 'Москва +3'], ['UTC', 'UTC']]
 SITE_ID = 2
 
-ACCOUNT_LOGIN_URL = 'yourapp:account_login'
+ACCOUNT_LOGIN_URL = 'image_pnev:account_login'
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = ACCOUNT_LOGIN_URL
 ACCOUNT_PASSWORD_RESET_REDIRECT_URL = ACCOUNT_LOGIN_URL
-ACCOUNT_EMAIL_CONFIRMATION_URL = "yourapp:account_confirm_email"
-ACCOUNT_SETTINGS_REDIRECT_URL = 'yourapp:account_settings'
-ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "yourapp:account_password"
+ACCOUNT_EMAIL_CONFIRMATION_URL = "image_pnev:account_confirm_email"
+ACCOUNT_SETTINGS_REDIRECT_URL = 'image_pnev:account_settings'
+ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = "image_pnev:account_password"
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_PASSWORD_STRIP = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

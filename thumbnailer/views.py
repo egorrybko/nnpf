@@ -4,9 +4,13 @@ from celery import current_app
 from django import forms  
 from django.conf import settings  
 from django.http import JsonResponse  
-from django.shortcuts import render  
+from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
 from .tasks import make_thumbnails
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from .forms import SignUpForm
+from django.contrib.auth.forms import AuthenticationForm
 
 class FileUploadForm(forms.Form):  
     image_file = forms.ImageField(required=True)
@@ -41,3 +45,53 @@ def about_prj(reqest):
     return render(reqest, 'thumbnailer/about_prj.html')
 def about_us(reqest):
     return render(reqest, 'thumbnailer/about_us.html')
+
+def test(reqest):
+    return render(reqest, 'thumbnailer/base.html')
+
+def e_handler404(request, exception, template_name="thumbnailer/404.html"):
+    response = render_to_response(template_name)
+    response.status_code = 404
+    return response
+
+def e_handler500(request, *args, **argv):
+    return render(request, 'thumbnailer/500.html', status=500)
+
+#https://codedec.com/tutorials/user-login-and-logout-in-django/
+def sign_up(request):
+    if request.method == "POST":
+        fm = SignUpForm(request.POST)
+        if fm.is_valid():
+            messages.success(request,'Account Created Successfully!!!')
+            fm.save()
+    else:
+        fm = SignUpForm()
+    return render(request,'thumbnailer/signup.html',{'form':fm})
+#Login
+def user_login(request):
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            fm = AuthenticationForm(request=request,data=request.POST)
+            if fm.is_valid():
+                uname = fm.cleaned_data['username']
+                upass = fm.cleaned_data['password']
+                user = authenticate(username=uname, password=upass)
+                if user is not None:
+                    login(request,user)
+                    messages.success(request,'Успешно вошел в систему!!!')
+                    return HttpResponseRedirect('/profile/')
+        else:
+            fm = AuthenticationForm()
+        return render(request,'thumbnailer/login.html',{'form':fm})
+    else:
+        return HttpResponseRedirect('/profile/')
+#Profile
+def user_profile(request):
+    if request.user.is_authenticated:
+        return render(request,'thumbnailer/profile.html',{'name':request.user})
+    else:
+        return HttpResponseRedirect('/login/')
+#Logout
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/login/')
