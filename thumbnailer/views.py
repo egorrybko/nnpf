@@ -94,4 +94,4 @@ def user_profile(request):
 #Logout
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect('/login/')
+    return render(request,'thumbnailer/logout.html')

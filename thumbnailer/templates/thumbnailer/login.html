@@ -12,9 +12,10 @@
   {% for fm in form %}
       {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
   {% endfor %}
-  <input type="submit", value="Login">
+  <input class="button" type="submit", value="Войти">
 </form>
-  <a href="{% url 'signup' %}">Signup</a>
+<br>
+  <a href="{% url 'signup' %}">Регистрация</a>
 {% endblock %}
 
 
