@@ -95,3 +95,7 @@ def user_profile(request):
 def user_logout(request):
     logout(request)
     return render(request,'thumbnailer/logout.html')
+
+
+def chat(request):
+    return render(request, 'thumbnailer/room.html')

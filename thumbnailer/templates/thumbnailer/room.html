@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+    <input id="message-input" type="text" size="100"><br>
+    <input id="btn-submit" type="button" value="Send">
+    <div id="chat">
+ 
+    </div>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}
