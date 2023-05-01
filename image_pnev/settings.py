@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'thumbnailer.apps.ThumbnailerConfig',
     'widget_tweaks',
     'django.contrib.sites',
+    'channels',
     'account',
 ]
 
