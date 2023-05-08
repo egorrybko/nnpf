@@ -11,9 +11,15 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+import image_pnev.routing
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'image_pnev.settings')
 
-application = get_asgi_application()
-#application = ProtocolTypeRouter({
-#  'http': get_asgi_application(),
-#})
+application = ProtocolTypeRouter({
+  'http': get_asgi_application(),
+  'websocket': AuthMiddlewareStack(
+        URLRouter(
+            image_pnev.routing.websocket_urlpatterns
+        )
+    ),
+})
