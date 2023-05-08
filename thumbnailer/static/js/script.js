@@ -1,24 +1,25 @@
-let chat = document.querySelector("#chat")
-let input = document.querySelector("#message-input")
-let btnSubmit = document.querySelector("#btn-submit")
- 
-const webSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+// chat/static/index.js
 
+console.log("Sanity check from index.js.");
 
-webSocket.onmessage = function(e) {
-    alert(`[message] Данные получены с сервера: ${e.data}`);
-    const data = JSON.parse(e.data);
-    chat.innerHTML += '<div class="msg">' + data.message + '</div>'
+// focus 'roomInput' when user opens the page
+document.querySelector("#roomInput").focus();
+
+// submit if the user presses the enter key
+document.querySelector("#roomInput").onkeyup = function(e) {
+    if (e.keyCode === 13) {  // enter key
+        document.querySelector("#roomConnect").click();
+    }
 };
 
-webSocket.onerror = function(error) {
-    alert(`[error]`);
-};
- 
-btnSubmit.addEventListener("click", () => {
-    message = input.value;
-    webSocket.send(JSON.stringify({
-        'message': message
-    }));
-    input.value = '';
-})
+// redirect to '/room/<roomInput>/'
+document.querySelector("#roomConnect").onclick = function() {
+    let roomName = document.querySelector("#roomInput").value;
+    window.location.pathname = "room/" + roomName + "/";
+}
+
+// redirect to '/room/<roomSelect>/'
+document.querySelector("#roomSelect").onchange = function() {
+    let roomName = document.querySelector("#roomSelect").value.split(" (")[0];
+    window.location.pathname = "room/" + roomName + "/";
+}

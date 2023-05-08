@@ -12,6 +12,8 @@ from django.contrib import messages
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 
+from .models import Room
+
 class FileUploadForm(forms.Form):  
     image_file = forms.ImageField(required=True)
 class HomeView(View):  
@@ -97,5 +99,15 @@ def user_logout(request):
     return render(request,'thumbnailer/logout.html')
 
 
-def chat(request):
-    return render(request, 'thumbnailer/room.html')
+
+def index_view(request):
+    return render(request, 'thumbnailer/room_index.html', {
+        'rooms': Room.objects.all(),
+    })
+
+
+def room_view(request, room_name):
+    chat_room, created = Room.objects.get_or_create(name=room_name)
+    return render(request, 'thumbnailer/room.html', {
+        'room': chat_room,
+    })

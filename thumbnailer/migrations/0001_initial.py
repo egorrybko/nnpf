@@ -9,13 +9,3 @@ class Migration(migrations.Migration):
 
     dependencies = [
     ]
-
-    operations = [
-        migrations.CreateModel(
-            name='Message',
-            fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, unique=True)),
-                ('text', models.CharField(max_length=255)),
-            ],
-        ),
-    ]

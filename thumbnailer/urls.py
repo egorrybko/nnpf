@@ -15,7 +15,8 @@ urlpatterns = [
   path('login/',views.user_login, name='login'),
   path('profile/',views.user_profile,name='profile'),
   path('logout/',views.user_logout,name='logout'),
-  path('chat/', views.chat,name='chat'),
+  path('room/', views.index_view, name='chat-index'),
+  path('room/<str:room_name>/', views.room_view, name='chat-room'),
 ]
 
 handler404 = e_handler404

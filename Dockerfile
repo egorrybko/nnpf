@@ -12,6 +12,8 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/image_pnev/requirements.txt
 
+COPY nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+
 RUN apt-get update && apt-get install -y python3-opencv
 RUN pip install opencv-python
 
