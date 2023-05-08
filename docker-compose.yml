@@ -26,6 +26,7 @@ services:
     entrypoint: /usr/src/image_pnev/entrypoint_back.sh
     volumes:
       - ./:/usr/src/image_pnev
+      - media_volume:/usr/src/image_pnev/media
     environment:
       - DEBUG=1
       - SECRET_KEY=django-insecure-9sb$-*w&x4zup&$p)#@r7$1rm)jtnd#_kxqhu!u+$m^74p%s&x

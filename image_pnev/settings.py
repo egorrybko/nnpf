@@ -88,7 +88,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://egorrybko-literate-goggles-p5x5jpp9vjjfrwwg-8000.preview.app.github.dev','https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://egorrybko-literate-parakeet-57w7gxx596rf7gpw-1337.preview.app.github.dev','https://127.0.0.1']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -177,3 +177,14 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Security Headers
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = 3600
