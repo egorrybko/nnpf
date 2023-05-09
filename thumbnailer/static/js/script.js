@@ -15,11 +15,13 @@ document.querySelector("#roomInput").onkeyup = function(e) {
 // redirect to '/room/<roomInput>/'
 document.querySelector("#roomConnect").onclick = function() {
     let roomName = document.querySelector("#roomInput").value;
+    if (roomName === null) return;
     window.location.pathname = "room/" + roomName + "/";
 }
 
 // redirect to '/room/<roomSelect>/'
 document.querySelector("#roomSelect").onchange = function() {
     let roomName = document.querySelector("#roomSelect").value.split(" (")[0];
+    if (roomName === null) return;
     window.location.pathname = "room/" + roomName + "/";
 }
