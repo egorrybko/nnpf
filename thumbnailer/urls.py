@@ -3,6 +3,7 @@ from django.urls import path
 from django.urls import include, re_path
 from . import views
 from .views import e_handler404, e_handler500
+from . import consumers
  
 urlpatterns = [
   path('', views.HomeView.as_view(), name='home'),
@@ -17,6 +18,7 @@ urlpatterns = [
   path('logout/',views.user_logout,name='logout'),
   path('room/', views.index_view, name='chat-index'),
   path('room/<str:room_name>/', views.room_view, name='chat-room'),
+  re_path(r'ws/chat/(?P<room_name>\w+)/$', consumers.ChatConsumer.as_asgi()),
 ]
 
 handler404 = e_handler404
