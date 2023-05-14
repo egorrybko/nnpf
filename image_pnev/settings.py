@@ -77,6 +77,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'image_pnev.wsgi.application'
+ASGI_APPLICATION = "image_pnev.asgi.application"
+#ASGI_APPLICATION = 'thumbnailer.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -88,7 +90,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://egorrybko-cuddly-disco-wqwqrggxjj4f56gj-1337.preview.app.github.dev','https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://egorrybko-legendary-cod-p5x5jpp95v7frx9-8000.preview.app.github.dev','https://127.0.0.1']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -167,13 +169,13 @@ IMAGES_DIR = os.path.join(MEDIA_ROOT, 'images')
 if not os.path.exists(MEDIA_ROOT) or not os.path.exists(IMAGES_DIR):
     os.makedirs(IMAGES_DIR)
 
-ASGI_APPLICATION = "image_pnev.asgi.application"
+REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [(REDIS_HOST, 6379)],
         },
     },
 }
