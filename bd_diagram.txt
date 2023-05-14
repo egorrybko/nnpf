@@ -1,0 +1,62 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+https://dbdiagram.io/d
+
+Table thumbnailer_room_online {
+  id integer [PRIMARY KEY] 
+  room_id bigint 
+  user_id integer
+}
+
+TABLE thumbnailer_room {
+  id integer [primary key]
+  name varchar(128)
+}
+
+TABLE "django_session" {
+  "session_key" varchar(40) [PRIMARY KEY] 
+  "session_data" text
+  "expire_date" datetime
+}
+TABLE "django_admin_log" {
+  "id" integer [PRIMARY KEY]  
+  "action_time" datetime
+  "object_id" text
+  "object_repr" varchar(200)
+  "change_message" text 
+  "content_type_id" integer  
+  "user_id" integer 
+  "action_flag" smallint 
+}
+TABLE auth_user {
+  "id" integer [PRIMARY KEY] 
+  "password" varchar(128)
+  "last_login" datetime
+  "is_superuser" bool
+  "username" varchar(150) 
+  "last_name" varchar(150) 
+  "email" varchar(254)
+  "is_staff" bool 
+  "is_active" bool 
+  "date_joined" datetime
+  "first_name" varchar(150) 
+}
+TABLE "account_emailaddress" {
+  "id" integer [PRIMARY KEY] 
+  "email" varchar(254) 
+  "verified" bool 
+  "primary" bool 
+  "user_id" integer 
+}
+TABLE "django_content_type" {
+  "id" integer [PRIMARY KEY]  
+  "app_label" varchar(100) 
+  "model" varchar(100) 
+}
+
+Ref: "thumbnailer_room"."id" - "thumbnailer_room_online"."id"
+Ref: "auth_user"."id" - "thumbnailer_room_online"."user_id"
+Ref: "django_content_type"."id" < "django_admin_log"."content_type_id"
+Ref: "django_admin_log"."user_id" > "auth_user"."id"
+Ref: "account_emailaddress"."user_id" > "auth_user"."id"
