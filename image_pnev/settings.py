@@ -167,7 +167,7 @@ IMAGES_DIR = os.path.join(MEDIA_ROOT, 'images')
 if not os.path.exists(MEDIA_ROOT) or not os.path.exists(IMAGES_DIR):
     os.makedirs(IMAGES_DIR)
 
-ASGI_APPLICATION = "image_pnev.routing.application"
+ASGI_APPLICATION = "image_pnev.asgi.application"
 
 CHANNEL_LAYERS = {
     'default': {
