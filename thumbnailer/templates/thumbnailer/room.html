@@ -3,36 +3,25 @@
 {% load static %}
 {% block content %}
 
-<style>
-    #chatLog {
-        height: 300px;
-        background-color: #FFFFFF;
-        resize: none;
-    }
-
-    #onlineUsersSelector {
-        height: 300px;
-    }
-</style>
-
-<div class="container mt-3 p-5">
-    <h2>django-channels-chat</h2>
-    <div class="row">
-        <div class="col-12 col-md-8">
+<div>
+    <h2 class="is-size-2">Чат</h2>
+    <div class="columns">
+        <div class="column is-two-thirds">
             <div class="mb-2">
-                <label for="chatLog">Room: #{{ room.name }}</label>
-                <textarea class="form-control" id="chatLog" readonly></textarea>
+                <label for="chatLog">Комната: #{{ room.name }}</label>
+                <textarea class="form-control" id="chatLog" style="resize: none; width: 100%; height: 300px;" readonly></textarea>
             </div>
             <div class="input-group">
-                <input type="text" class="form-control" id="chatMessageInput" placeholder="Enter your chat message">
+                <input type="text" class="form-control" id="chatMessageInput" placeholder="Напишите сообщение" style="width: 100%;">
                 <div class="input-group-append">
-                    <button class="btn btn-success" id="chatMessageSend" type="button">Send</button>
+                    <br>
+                    <button class="button is-fullwidth" id="chatMessageSend" type="button">Отправить</button>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-4">
-            <label for="onlineUsers">Online users</label>
-            <select multiple class="form-control" id="onlineUsersSelector">
+        <div class="column">
+            <label for="onlineUsers">Пользователи в сети</label>
+            <select multiple class="form-control" id="onlineUsersSelector" style="height: 400px;">
             </select>
         </div>
     </div>

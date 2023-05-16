@@ -2,27 +2,25 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block content %}
-<style>
-    #roomSelect {
-        height: 300px;
-    }
-</style>
-<div class="container mt-3 p-5">
-    <h2>django-channels-chat</h2>
-    <div class="row">
-        <div class="col-12 col-md-8">
-            <div class="mb-2">
-                <label for="roomInput">Enter a room name to connect to it:</label>
+
+<div>
+    <h2 class="is-size-2">Войти или создать комнату</h2>
+    <div class="columns">
+        <div class="column is-two-thirds">
+            <div style="margin-bottom: 30%;">
+                <label for="roomInput" class="is-size-4">Введите имя комнаты, к которой хотите присоеденится:</label>
+                <br>
                 <input type="text" class="form-control" id="roomInput" placeholder="Room name">
-                <small id="roomInputHelp" class="form-text text-muted">If the room doesn't exist yet, it will be created for you.</small>
+                <br>
+                <small id="roomInputHelp" class="form-text text-muted" class="is-size-5">Если комнаты не существует, то она создасться автоматически.</small>
             </div>
-            <button type="button" id="roomConnect" class="btn btn-success">Connect</button>
+            <button type="button" id="roomConnect" class="button is-fullwidth">Connect</button>
         </div>
-        <div class="col-12 col-md-4">
-            <label for="roomSelect">Active rooms</label>
-            <select multiple class="form-control" id="roomSelect">
+        <div class="column">
+            <label for="roomSelect">Активные комнаты</label>
+            <select multiple class="form-control" id="roomSelect" style="height: 100%; width: 140px;">
                 {% for room in rooms %}
-                    <option>{{ room }}</option>
+                    <option>{{ room }} человек(а)</option>
                 {% endfor %}
             </select>
         </div>
