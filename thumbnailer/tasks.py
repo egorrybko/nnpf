@@ -61,7 +61,7 @@ def make_thumbnails(file_path, thumbnails=[]):
 
         fig = plt.figure(figsize=(10, 10))
         plt.imshow(x1, cmap='gray')
-        plt.title("Predicted Class {}".format(predictions[0])+'1 - normal, 0 - bad')
+        plt.title("Predicted Class {}".format((predictions[0] - 1) * (-1))+' 0 - normal, 1 - bad')
 
         fig.savefig(file_path)
         os.chdir(settings.IMAGES_DIR)
